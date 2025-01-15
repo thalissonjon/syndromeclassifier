@@ -8,6 +8,7 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import roc_auc_score, f1_score
 from sklearn.preprocessing import OneHotEncoder
 
+
 def prepare_data(df):
     df['embedding'] = df['embedding'].apply(lambda x: np.array(json.loads(x), dtype=np.float32))
 
@@ -17,6 +18,7 @@ def prepare_data(df):
     # print(y.shape)
 
     return X, y
+
 
 def apply_knn(X, y, distance_metrics, values, folds):
     results = []

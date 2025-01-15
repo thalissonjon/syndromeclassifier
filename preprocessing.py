@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import json
 
+
 def create_dataframe(data):
     data_cv = []
 
@@ -39,6 +40,7 @@ def create_dataframe(data):
     print(df.head())
     return df
 
+
 def ensure_data(df):
     df['syndrome_id'] = pd.to_numeric(df['syndrome_id'], errors='coerce')
     df['subject_id'] = pd.to_numeric(df['subject_id'], errors='coerce')
@@ -66,6 +68,7 @@ def ensure_data(df):
     else:
         print("\nEmbeddings with dimensions different from 320:")
         print(incorrect_dimensions)
+
 
 def get_statistics(df):
     num_syndromes = df['syndrome_id'].nunique() # number of unique syndromes
@@ -106,10 +109,12 @@ def get_statistics(df):
     else:
         print("\nNo images are associated with more than one syndrome.")
 
+
 def main(data):
     df = create_dataframe(data)
     ensure_data(df)
     get_statistics(df)
+
 
 if __name__ == '__main__':
     pickle_file = 'data/mini_gm_public_v0.1.p'

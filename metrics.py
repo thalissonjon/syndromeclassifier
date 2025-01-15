@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from tabulate import tabulate
 
+
 def plot_roc_auc(df):
     metrics = df['metric'].unique()
     plt.figure(figsize=(10, 6))
@@ -18,6 +19,7 @@ def plot_roc_auc(df):
     plt.grid(True)
     plt.savefig('roc_auc.png', dpi=300, bbox_inches='tight')
     plt.show()
+
 
 def generate_tables(df):
     # table for best results for distance metric
@@ -61,7 +63,6 @@ def generate_tables(df):
     print("\nBest overall results:")
     print(tabulate(best_overall, headers='keys', tablefmt='grid', showindex=False))
 
-
     # average results for each metric
     average_metrics = df.groupby('metric').mean(numeric_only=True).reset_index()
 
@@ -79,9 +80,11 @@ def generate_tables(df):
     print("\nAverage Results:")
     print(tabulate(average_metrics, headers='keys', tablefmt='grid', showindex=False))
 
+
 def main(df):
     plot_roc_auc(df)
     generate_tables(df)
+
 
 if __name__ == '__main__':
     df = pd.read_csv("data/knn_results.csv")
