@@ -2,6 +2,7 @@ import pickle
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import json
 
 def create_dataframe(data):
     data_cv = []
@@ -18,6 +19,7 @@ def create_dataframe(data):
             for image_id in data[syndrome_id][subject_id].keys():
                 # print(f"        image_id: {image_id}")
                 embedding = data[syndrome_id][subject_id][image_id]
+                # print(embedding)
                 # print(f"            embedding size: {len(embedding)}")
                 # print(type(embedding))
                 record = {
@@ -25,12 +27,15 @@ def create_dataframe(data):
                     'subject_id': subject_id,
                     'image_id': image_id,
                     'embedding_size': len(embedding),
-                    'embedding': embedding
+                    # 'embedding': embedding
+                    'embedding': json.dumps(embedding.tolist())  # save as json string > separate using commas
                 }
                 data_cv.append(record)
 
     df = pd.DataFrame(data_cv)
-    # df.to_csv("output.csv", index=False)
+    print('LEN EMBEDDING')
+    print(len(df['embedding'].iloc[0]))
+    df.to_csv("output.csv", index=False)
     print(df.head())
     return df
 
@@ -53,7 +58,7 @@ def ensure_data(df):
     else:
         print("No negative values in the dataframe.")
 
-    print(f"\nNull values in each column: \n{df.isnull().sum()}")
+    print(f"\nNull values in each column: \n{df.isnull().sum()}") # ignore embedding nulls
 
     incorrect_dimensions = df[df['embedding_size'] != 320]
     if incorrect_dimensions.empty:
