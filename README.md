@@ -1,4 +1,4 @@
-# SyndromeClassifier
+# Syndrome Classifier
 
 This is a machine learning project designed to classify medical syndromes based on image embeddings. The project includes data preprocessing, visualization, and classification using the K-Nearest Neighbors (KNN) algorithm. This small project was done for study purposes.
 
@@ -8,8 +8,6 @@ This is a machine learning project designed to classify medical syndromes based 
 - Installation
 - Usage
 - Results
-- Contributing
-- License
 
 ## Dataset Description
 The dataset is provided as a pickle file (`mini_gm_public_v0.1.p`) with the following structure:
