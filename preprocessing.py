@@ -34,10 +34,10 @@ def create_dataframe(data):
                 data_cv.append(record)
 
     df = pd.DataFrame(data_cv)
-    print('LEN EMBEDDING')
-    print(len(df['embedding'].iloc[0]))
+    # print('LEN EMBEDDING')
+    # print(len(df['embedding'].iloc[0]))
     df.to_csv("output.csv", index=False)
-    print(df.head())
+    # print(df.head())
     return df
 
 
